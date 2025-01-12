@@ -1,0 +1,9 @@
+#button{
+    -fx-background-color: #283593;
+    -fx-text-fill:#ffffff;
+    -fx-font-size: 16px;
+    -fx-padding: 30px;
+    -fx-border-radius: 30px;      /* Arrondi des bordures */
+    -fx-background-radius: 30px;
+    -fx-bottom:50px;
+}
