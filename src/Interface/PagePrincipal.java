@@ -22,18 +22,18 @@ import fonctionnalites.modifier.RechercherTexte;
 import fonctionnalites.modifier.SelectionnerTexte;
 import fonctionnalites.modifier.Taille;
 import fonctionnalites.vue.ZoomDezoom;
-
+import fonctionnalites.style.StyleTexte;
 import java.io.File;
 
 
 public class PagePrincipal {
     private Scene scene;
-    private TextArea textArea;  // Déclaration de la TextArea en tant que variable d'instance
+    private TextArea textArea;
 
     public PagePrincipal() {
         // Création du menu fichier et ses différents composants
         Menu fichier = new Menu("Fichier");
-        MenuItem nouveauDocument = new MenuItem("Nouveau");
+        MenuItem nouveauDocument = new MenuItem("Nouveau fichier");
         MenuItem nouvelleFenetre = new MenuItem("Nouvelle fenetre");
         MenuItem ouvrirFichier = new MenuItem("Ouvrir fichier");
         SeparatorMenuItem separateurItem = new SeparatorMenuItem();
@@ -45,15 +45,15 @@ public class PagePrincipal {
         Menu modifier = new Menu("Modifier");
         MenuItem selectionnerTout = new MenuItem("Sélectionner tout");
         MenuItem deselectionner = new MenuItem("Désélectionner");
-        SeparatorMenuItem separatorMenuItem = new SeparatorMenuItem();
         MenuItem copier = new MenuItem("Copier");
         MenuItem coller = new MenuItem("Coller");
         MenuItem couper = new MenuItem("Couper");
         MenuItem rechercher = new MenuItem("Rechercher");
+        SeparatorMenuItem separateurModifier = new SeparatorMenuItem();
         MenuItem alignerGauche = new MenuItem("Aligner à gauche");
         MenuItem alignerCentre = new MenuItem("Centrer");
         MenuItem alignerDroite = new MenuItem("Aligner à droite");
-        modifier.getItems().addAll(selectionnerTout,deselectionner, rechercher, separateurItem, copier, coller, couper,alignerCentre,alignerGauche,alignerDroite);
+        modifier.getItems().addAll(selectionnerTout,deselectionner, rechercher, separateurItem, copier, coller, couper,separateurModifier,alignerCentre,alignerGauche,alignerDroite);
 
         // Menu "Formatage"
         Menu formatage = new Menu("Formatage");
@@ -61,6 +61,13 @@ public class PagePrincipal {
         MenuItem taille = new MenuItem("taille police");
         MenuItem couleur = new MenuItem("Choisir couleur");
         formatage.getItems().addAll(police,taille, couleur);
+
+        Menu style = new Menu("Style");
+        MenuItem gras = new MenuItem("gras");
+        MenuItem italique = new MenuItem("italique");
+        MenuItem souligne = new MenuItem("souligné");
+        style.getItems().addAll(gras,italique,souligne);
+        
 
         // Menu "Vue"
         Menu vue = new Menu("Vue");
@@ -75,10 +82,11 @@ public class PagePrincipal {
         aide.getItems().addAll( feedback, informations);
 
         // Création de la barre de menus
-        MenuBar menuBar = new MenuBar(fichier, modifier, formatage, vue, aide);
+        MenuBar menuBar = new MenuBar(fichier, modifier, formatage,style, vue, aide);
 
         // Création de la TextArea pour afficher le contenu du fichier
         textArea = new TextArea();
+        textArea.setWrapText(true);
         textArea.setPromptText("Écrivez ici...");
 
         // Fonctionnalité d'ouverture de fichier
@@ -159,6 +167,14 @@ public class PagePrincipal {
         alignerCentre.setOnAction(e -> Positionnement.alignerCentre(textArea));
         alignerDroite.setOnAction(e -> Positionnement.alignerDroite(textArea));
 
+        gras.setOnAction(event -> {
+            StyleTexte.styleT(textArea, "-fx-text-decoration: underline;");
+        });
+        italique.setOnAction(e-> StyleTexte.styleT(textArea,"-fx-font-style:italic;"));
+        souligne.setOnAction(e-> StyleTexte.styleT(textArea,"-fx-underline:true"));
+
+
+
 
 
         // Création de la VBox (layout) et ajout du menu et de la TextArea
@@ -170,7 +186,6 @@ public class PagePrincipal {
 
         // Création de la scène
         scene = new Scene(root, 499, 700);
-        scene.getStylesheets().add("file:stylePagePrincipal.css");
     }
 
     // Fonctionnalité de création d'un nouveau fichier

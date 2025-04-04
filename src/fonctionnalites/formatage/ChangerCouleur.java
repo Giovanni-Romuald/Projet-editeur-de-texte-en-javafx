@@ -19,7 +19,7 @@ public class ChangerCouleur {
         colorPickerStage.setTitle("Choisir la couleur du texte");
 
         // Action lorsque l'utilisateur choisit une couleur
-        colorPicker.setOnAction(event -> {
+        colorPicker.setOnAction(e -> {
             // Appliquer la couleur sélectionnée au texte de la TextArea
             textArea.setStyle("-fx-text-fill: " + toRgbString(colorPicker.getValue()) + ";");
             colorPickerStage.close();  // Ferme la fenêtre après sélection

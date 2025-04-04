@@ -1,15 +1,16 @@
 {
     "java.project.sourcePaths": ["src"],
     "java.project.outputPath": "bin",
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "c:\\Users\\Giovanni\\Desktop\\javafx\\lib\\javafx.base.jar",
-        "c:\\Users\\Giovanni\\Desktop\\javafx\\lib\\javafx.controls.jar",
-        "c:\\Users\\Giovanni\\Desktop\\javafx\\lib\\javafx.fxml.jar",
-        "c:\\Users\\Giovanni\\Desktop\\javafx\\lib\\javafx.graphics.jar",
-        "c:\\Users\\Giovanni\\Desktop\\javafx\\lib\\javafx.media.jar",
-        "c:\\Users\\Giovanni\\Desktop\\javafx\\lib\\javafx.swing.jar",
-        "c:\\Users\\Giovanni\\Desktop\\javafx\\lib\\javafx.web.jar",
-        "c:\\Users\\Giovanni\\Desktop\\javafx\\lib\\javafx-swt.jar"
-    ]
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar",
+            "c:\\Users\\Giovanni\\Desktop\\javafx\\lib\\javafx.controls.jar",
+            "c:\\Users\\Giovanni\\Desktop\\javafx\\lib\\javafx.fxml.jar",
+            "c:\\Users\\Giovanni\\Desktop\\javafx\\lib\\javafx.graphics.jar",
+            "c:\\Users\\Giovanni\\Desktop\\javafx\\lib\\javafx.media.jar"
+        ],
+        "exclude": [
+            "c:\\Users\\Giovanni\\Desktop\\javafx\\lib\\javafx-swt.jar"
+        ]
+    }
 }

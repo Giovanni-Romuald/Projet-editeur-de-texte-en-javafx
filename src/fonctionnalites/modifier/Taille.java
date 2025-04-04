@@ -9,18 +9,17 @@ public class Taille {
     
     public static void changerTaillePolice(TextArea textArea) {
         // Créer un dialog pour entrer la taille de la police
-        TextInputDialog dialog = new TextInputDialog("13");  // Taille par défaut
+        TextInputDialog dialog = new TextInputDialog("13");
         dialog.setTitle("Changer Taille Police");
         dialog.setHeaderText("Entrez la taille de la police :");
         dialog.setContentText("Taille de la police:");
 
-        // Attendre la réponse de l'utilisateur
         dialog.showAndWait().ifPresent(taille -> {
             try {
-                // Convertir la taille en entier
+               
                 int taillePolice = Integer.parseInt(taille);
                 
-                // Vérifier que la taille est valide (par exemple, entre 5 et 100)
+               
                 if (taillePolice >= 5 && taillePolice <= 100) {
                     // Appliquer la taille de la police à la TextArea
                     textArea.setStyle("-fx-font-size: " + taillePolice + "px;");

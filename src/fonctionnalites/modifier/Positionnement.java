@@ -16,6 +16,6 @@ public class Positionnement {
 
     // Méthode pour aligner le texte à droite
     public static void alignerDroite(TextArea textArea) {
-        textArea.setStyle("-fx-text-alignment: right; -fx-alignment: top-right;");
+        textArea.setStyle("-fx-text-alignment: right; -fx-alignment: top-right; -fx-position:relative;");
     }
 }

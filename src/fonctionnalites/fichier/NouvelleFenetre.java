@@ -13,14 +13,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import fonctionnalites.aide.AfficherInformations;
 import fonctionnalites.aide.EnvoyerFeedback;
-import fonctionnalites.fichier.CreerFichier;
-import fonctionnalites.fichier.Impression;
 import fonctionnalites.fichier.NouvelleFenetre;
-import fonctionnalites.fichier.OuvertureFichier;
 import fonctionnalites.formatage.ChangerCouleur;
 import fonctionnalites.formatage.Police;
 import fonctionnalites.modifier.RechercherTexte;
 import fonctionnalites.modifier.SelectionnerTexte;
+import fonctionnalites.style.StyleTexte;
 import fonctionnalites.vue.ZoomDezoom;
 
 import java.io.File;
@@ -59,6 +57,13 @@ public class NouvelleFenetre {
         MenuItem couleur = new MenuItem("Choisir couleur");
         formatage.getItems().addAll(police, couleur);
 
+        Menu style = new Menu("Style");
+        MenuItem gras = new MenuItem("gras");
+        MenuItem italique = new MenuItem("italique");
+        MenuItem souligne = new MenuItem("souligné");
+        style.getItems().addAll(gras,italique,souligne);
+        
+
         // Menu "Vue"
         Menu vue = new Menu("Vue");
         MenuItem zoom = new MenuItem("Zoom +");
@@ -72,11 +77,14 @@ public class NouvelleFenetre {
         aide.getItems().addAll( feedback, informations);
 
         // Création de la barre de menus
-        MenuBar menuBar = new MenuBar(fichier, modifier, formatage, vue, aide);
+        MenuBar menuBar = new MenuBar(fichier, modifier, formatage,style, vue, aide);
 
         // Création de la TextArea pour afficher le contenu du fichier
         textArea = new TextArea();
         textArea.setPromptText("Écrivez ici...");
+        textArea.setWrapText(true);
+        textArea.setPromptText("Écrivez ici...");
+
 
         // Fonctionnalité d'ouverture de fichier
         ouvrirFichier.setOnAction(e -> OuvrirFenetreChoixFichier());
@@ -146,6 +154,12 @@ public class NouvelleFenetre {
 
         //informations
         informations.setOnAction(e -> AfficherInformations.afficherInfos());
+         gras.setOnAction(event -> {
+            StyleTexte.styleT(textArea, "-fx-text-decoration: underline;");
+        });
+        italique.setOnAction(e-> StyleTexte.styleT(textArea,"-fx-font-style:italic;"));
+        souligne.setOnAction(e-> StyleTexte.styleT(textArea,"-fx-underline:true"));
+
 
 
 

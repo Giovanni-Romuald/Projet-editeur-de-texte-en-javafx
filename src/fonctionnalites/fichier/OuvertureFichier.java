@@ -13,6 +13,7 @@ public class OuvertureFichier {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("fichier texte", "*txt"));
         File fichierChoisi = fileChooser.showOpenDialog(new Stage());
+        fileChooser.setTitle(fichierChoisi.getName());
         return fichierChoisi;
     }
     public static String lireContenuFichier(File fichier) {
@@ -29,5 +30,6 @@ public class OuvertureFichier {
 
         return contenu.toString(); // Retourne le contenu du fichier
     }
+  
 }
 
